@@ -1,6 +1,7 @@
 This is a micro-stable implementation of a distributed Key-Value pair database.
 
-The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times.
+The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times. And internally all the changes are persisted locally both by primary or secondary node. (Persistence is loosely coupled and can be done using any SQL or NOSQL based database or file for that matter).
+
 Clients contacting the primary node directly can use all operations on the key-value store, while clients contacting the secondaries can only use lookups.
 
 The two set of operations in detail are:
@@ -25,20 +26,20 @@ Ordering is maintained.
 
 If the following command is sent to the primary replica, waiting for successful acknowledgement of each operation before proceeding with the next:
 
-Insert("key1", "a")
-Insert("key2", "1")
-Insert("key1", "b")
-Insert("key2", "2")
+	Insert("key1", "a")
+	Insert("key2", "1")
+	Insert("key1", "b")
+	Insert("key2", "2")
 
-Ordering is guaranteed for clients contacting the primary replica:
----------------------------------------------------------------
+1) Ordering is guaranteed for clients contacting the primary replica:
+
 A second client reading directly from the primary will not see:
 
 	key1 containing b and then containing a (since a was written before b for key1)
 	key2 containing 2 and then containing 1 (since 1 was written before 2 for key2)
 
-Ordering is guaranteed for clients contacting the secondary replica:
----------------------------------------------------------------
+2) Ordering is guaranteed for clients contacting the secondary replica:
+
 For a second client reading from one of the secondary replicas, the exact same requirements apply as if that client was reading from the primary, with the following addition:
 
 It is guaranteed that a client reading from a secondary replica will eventually see the following (at some point in the future):
@@ -46,8 +47,8 @@ It is guaranteed that a client reading from a secondary replica will eventually 
 key1 containing b
 key2 containing 2
 
-Ordering guarantees for clients contacting different replicas
---------------------------------------------------------------
+3) Ordering guarantees for clients contacting different replicas
+
 If a second client asks different replicas for the same key, it may observe different values during the time window when an update is disseminated. The client asking for key1 might see:
 
 	Answer b from one replica
