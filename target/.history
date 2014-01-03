@@ -1,0 +1,36 @@
+eclipse with-source=true
+submit purijatin@gmail.com FNdnz3vNXk
+test
+submit purijatin@gmail.com FNdnz3vNXk
+test
+submit purijatin@gmail.com FNdnz3vNXk
+test
+clean
+test
+eclipse with-source=true
+test
+compile
+test
+compile
+submit purijatin@gmail.com FNdnz3vNXk
+test
+submit purijatin@gmail.com FNdnz3vNXk
+test
+submit purijatin@gmail.com FNdnz3vNXk
+test
+compile
+submit purijatin@gmail.com FNdnz3vNXk
+test
+clean
+compile
+test-only
+test
+eclipse with-source=true
+test
+compile
+test
+submit FNdnz3vNXk
+submit purijatin@gmail.com   FNdnz3vNXk
+compile
+clean
+eclipse with-source=true
