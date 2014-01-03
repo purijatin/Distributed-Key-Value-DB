@@ -1,6 +1,6 @@
 This is a micro-stable implementation of a distributed Key-Value pair database.
 
-In the current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times.
+The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times.
 Clients contacting the primary node directly can use all operations on the key-value store, while clients contacting the secondaries can only use lookups.
 
 The two set of operations in detail are:
@@ -16,6 +16,7 @@ A failed Insert or Remove command results in an OperationFailed(id) reply. A fai
 Lookup
 -------
 Get(key, id) - Instructs the replica to look up the "current" (what current means is described in detail in the next section) value assigned with the key in the storage and reply with the stored value.
+
 A Get operation results in a GetResult(key, valueOption, id) message where the id field matches the value in the id field of the corresponding Get message. The valueOption field contains None if the key is not present in the replica or Some(value) if a value is currently assigned to the given key in that replica.
 
 System Behavior - Consistency Guarantees
@@ -57,6 +58,7 @@ Eventually all reads will result in the value b if no other updates are done on 
 
 Durability & Persistence
 ========================
+
 Whenever the primary replica receives an update operation (either Insert or Remove) it replies with an OperationAck(id) or OperationFailed(id) message, which is sent at most 1 second after the update command was processed. 
 
 A positive OperationAck reply is sent as soon as the following is successful:
@@ -65,3 +67,5 @@ A positive OperationAck reply is sent as soon as the following is successful:
 	2) Change has been replicated to all the secondary replicas and secondary replicas have acknowledged the replication of the update and persisted locally
 
 Persistence trait has been implemented using which the data can be persisted using any SQL or NOSQL based database or file for that matter.
+
+See Wiki for more information.
