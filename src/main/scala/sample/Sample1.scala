@@ -8,20 +8,21 @@ import kvstore.Persistence
 import kvstore.Replica._
 import akka.actor.ActorSystem
 import akka.actor.Props
+import akka.event.LoggingReceive
 
 object Sample1 {
   def main(args: Array[String]) {
     val system = ActorSystem("Main")
     val arbiter = system.actorOf(Props[Arbiter])
 
-    val diff = 50000
+    val diff = 50000 * 3
 
     var set = Set[ActorRef]()
 
     val main = system.actorOf(Props(new Main(arbiter, 0, diff)))
     main ! "insert"
     
-    Thread.sleep(1000)
+    Thread.sleep(5000)
     
     set += main
     for (i <- 1 until 10) {
@@ -47,7 +48,7 @@ class Main(arbiter: ActorRef, start: Long = 0, end: Long = 0) extends Actor {
 
   val replica = context.actorOf(Replica.props(arbiter, Persistence.props(flaky = false)), "start"+start)
 
-  def receive = {
+  def receive = LoggingReceive{
     case g @ Get(key, id) => replica ! g
     case GetResult(key, opt, id) => println(s"$self GetResult: ($key, $opt)")
     case i:Insert => 

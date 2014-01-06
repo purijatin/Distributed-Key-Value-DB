@@ -1,6 +1,6 @@
 package kvstore
 
-import akka.actor.{ActorRef, Actor}
+import akka.actor.{ ActorRef, Actor }
 import scala.collection.immutable
 
 object Arbiter {
@@ -15,6 +15,10 @@ object Arbiter {
   case class Replicas(replicas: Set[ActorRef])
 }
 
+/**
+ * A subsystem which assigns the primary or secondary roles to nodes that Join.
+ * The first node which joins is assigned as Primary Node and all the subsequent ones are Secondary.
+ */
 class Arbiter extends Actor {
   import Arbiter._
   var leader: Option[ActorRef] = None
