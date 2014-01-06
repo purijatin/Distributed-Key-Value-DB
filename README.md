@@ -11,6 +11,7 @@ The two set of operations are:
 Update Commands
 ---------------
 Insert(key, value, id) - This message instructs the primary to insert the (key, value) pair into the storage and replicate it to the secondaries.
+
 Remove(key, id) - This message instructs the primary to remove the key (and its corresponding value) from the storage and then remove it from the secondaries.
 
 A successful Insert or Remove results in a reply to the client in the form of an OperationAck(id) message where the id field matches the corresponding id field of the operation that has been acknowledged.
