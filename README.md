@@ -1,6 +1,7 @@
 This is a micro-stable implementation of a distributed Key-Value pair database.
 
-(This is based on akka and the messages are sent to akka actors. Other modes of communication will be supported in future)
+(This is based on akka and the messages are sent to akka actors. Other modes of communication will be supported in future).
+Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
 The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times. Internally all the changes are persisted locally both by primary or secondary node. (Persistence is loosely coupled and can be done using any SQL or NOSQL based database or file for that matter).
 
