@@ -71,6 +71,7 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
   def receive = {
     case JoinedPrimary => context.become(leader)
     case JoinedSecondary => context.become(replica)
+    case other @ _ => self.tell(other, sender)
   }
 
   /**
