@@ -15,9 +15,7 @@ libraryDependencies += "junit" % "junit" % "4.10" % "test"
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.1"
 
 libraryDependencies ++= Seq(
-//    "com.netflix.rxjava" % "rxjava-scala" % "0.15.0",
     "org.json4s" % "json4s-native_2.10" % "3.2.5",
-  //  "org.scala-lang" % "scala-swing" % "2.10.3",
     "net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.0",
     "org.scala-lang" % "scala-reflect" % "2.10.3",
     "org.slf4j" % "slf4j-api" % "1.7.5",
