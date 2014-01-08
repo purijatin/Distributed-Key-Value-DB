@@ -1,3 +1,5 @@
+organization := "com.purijatin"
+
 name := "kvstore"
 
 version := "1.0.0"
@@ -12,7 +14,6 @@ libraryDependencies += "junit" % "junit" % "4.10" % "test"
 
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.1"
 
-
 libraryDependencies ++= Seq(
 //    "com.netflix.rxjava" % "rxjava-scala" % "0.15.0",
     "org.json4s" % "json4s-native_2.10" % "3.2.5",
@@ -24,8 +25,6 @@ libraryDependencies ++= Seq(
     "com.squareup.retrofit" % "retrofit" % "1.0.0",
     "org.scala-lang.modules" %% "scala-async" % "0.9.0-M2"
      )
-
-
 
 libraryDependencies ++= Seq(
     "com.typesafe.akka" %% "akka-actor" % "2.2.3",
