@@ -4,16 +4,14 @@ Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/O
 
 Build
 ======
-The current process is quite a tedious one, hopefully I will have a maven repositor hosted to ease the process.
+The current process is quite a tedious one, soon we will have a maven repository to ease the process.
 Latest build for Scala 2.10 can be downloaded from [here](https://github.com/purijatin/Distributed-Key-Value-DB/blob/master/target/scala-2.10/kvstore_2.10-1.0.0.jar?raw=true)
 
 Below are the dependencies, in your `build.sbt` add the below:
-	libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
-
-	libraryDependencies += "junit" % "junit" % "4.10" % "test"
 	
+	libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+	libraryDependencies += "junit" % "junit" % "4.10" % "test"
 	libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.1"
-
 	libraryDependencies ++= Seq(
     		"org.json4s" % "json4s-native_2.10" % "3.2.5",
     		"net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.0",
