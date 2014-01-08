@@ -7,7 +7,7 @@ Build
 The current process is quite a tedious one, soon we will have a maven repository to ease the process.
 Latest build for Scala 2.10 can be downloaded from [here](https://github.com/purijatin/Distributed-Key-Value-DB/blob/master/target/scala-2.10/kvstore_2.10-1.0.0.jar?raw=true)
 
-Below are the dependencies, in your `build.sbt` add the below:
+Below are the dependencies, add the below in your `build.sbt` :
 	
 	libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 	libraryDependencies += "junit" % "junit" % "4.10" % "test"
