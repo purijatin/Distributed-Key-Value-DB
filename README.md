@@ -2,6 +2,40 @@ This is a micro-stable implementation of a distributed Key-Value pair database. 
 
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
+Build
+======
+The current process is quite a tedious one, hopefully I will have a maven repositor hosted to ease the process.
+Latest build for Scala 2.10 can be downloaded from [here](https://github.com/purijatin/Distributed-Key-Value-DB/blob/master/target/scala-2.10/kvstore_2.10-1.0.0.jar?raw=true)
+
+Below are the dependencies, in your `build.sbt` add the below:
+	libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+
+	libraryDependencies += "junit" % "junit" % "4.10" % "test"
+	
+	libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.1"
+
+	libraryDependencies ++= Seq(
+    		"org.json4s" % "json4s-native_2.10" % "3.2.5",
+    		"net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.0",
+    		"org.scala-lang" % "scala-reflect" % "2.10.3",
+    		"org.slf4j" % "slf4j-api" % "1.7.5",
+    		"org.slf4j" % "slf4j-simple" % "1.7.5",
+    		"com.squareup.retrofit" % "retrofit" % "1.0.0",
+    		"org.scala-lang.modules" %% "scala-async" % "0.9.0-M2"
+     	)
+
+	libraryDependencies ++= Seq(
+    		"com.typesafe.akka" %% "akka-actor" % "2.2.3",
+    		"com.typesafe.akka" %% "akka-testkit" % "2.2.3"
+    	)
+
+
+
+
+Summary
+=======
+
+
 The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times. Internally all the changes are persisted locally both by primary or secondary node. (Persistence is loosely coupled and can be done using any SQL or NOSQL based database or file for that matter).
 
 Clients contacting the primary node directly can use all operations on the key-value store, while clients contacting the secondaries can only use lookups.
