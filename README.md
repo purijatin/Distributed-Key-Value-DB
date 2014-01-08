@@ -9,7 +9,7 @@ For `sbt` add the below in your `build.sbt` :
 	
 	resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-        libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
+	libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
 
 For `Maven` (link will be updated in a day)
 
