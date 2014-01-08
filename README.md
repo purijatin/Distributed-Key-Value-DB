@@ -56,7 +56,7 @@ Get(key, id) - Instructs the replica to look up the "current" (what current mean
 A Get operation results in a GetResult(key, valueOption, id) message where the id field matches the value in the id field of the corresponding Get message. The valueOption field contains None if the key is not present in the replica or Some(value) if a value is currently assigned to the given key in that replica.
 
 System Behavior - Consistency Guarantees
-=========================================
+----------------------------------------
 Ordering is maintained.
 
 If the following command is sent to the primary replica, waiting for successful acknowledgement of each operation before proceeding with the next:
@@ -93,7 +93,7 @@ Eventually all reads will result in the value b if no other updates are done on 
 
 
 Durability & Persistence
-========================
+------------------------
 
 Whenever the primary replica receives an update operation (either Insert or Remove) it replies with an OperationAck(id) or OperationFailed(id) message, which is sent at most 1 second after the update command was processed. 
 
