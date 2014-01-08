@@ -2,31 +2,18 @@ This is a micro but stable implementation of a distributed Key-Value pair databa
 
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
-Build
+Binaries
 ======
-The current process is quite a tedious one, soon we will have a maven repository to ease the process.
-Latest build for Scala 2.10 can be downloaded from [here](https://github.com/purijatin/Distributed-Key-Value-DB/blob/master/target/scala-2.10/kvstore_2.10-1.0.0.jar?raw=true)
 
-Below are the dependencies, add the below in your `build.sbt` :
+For `sbt` add the below in your `build.sbt` :
 	
-	libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
-	libraryDependencies += "junit" % "junit" % "4.10" % "test"
-	libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.1"
-	libraryDependencies ++= Seq(
-    		"org.json4s" % "json4s-native_2.10" % "3.2.5",
-    		"net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.0",
-    		"org.scala-lang" % "scala-reflect" % "2.10.3",
-    		"org.slf4j" % "slf4j-api" % "1.7.5",
-    		"org.slf4j" % "slf4j-simple" % "1.7.5",
-    		"com.squareup.retrofit" % "retrofit" % "1.0.0",
-    		"org.scala-lang.modules" %% "scala-async" % "0.9.0-M2"
-     	)
+	resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-	libraryDependencies ++= Seq(
-    		"com.typesafe.akka" %% "akka-actor" % "2.2.3",
-    		"com.typesafe.akka" %% "akka-testkit" % "2.2.3"
-    	)
+        libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
 
+For `Maven` (link will be updated in a day)
+
+External `Jar` can be downloaded from [repo](https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri/kvstore_2.10/1.0.0-SNAPSHOT/). Though you will manually have to download the dependencies. (Will update the part with link to all necessory links in future)
 
 
 
