@@ -12,6 +12,7 @@ For `sbt` add the below in your `build.sbt`:
 	libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
 
 For `Maven` add the below in your `pom.xml` file:
+
 	<dependency>
 		<groupId>com.jatinpuri</groupId>
 		<artifactId>kvstore_2.10</artifactId>
