@@ -5,15 +5,28 @@ Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/O
 Binaries
 ======
 
-For `sbt` add the below in your `build.sbt` :
+For `sbt` add the below in your `build.sbt`:
 	
 	resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 	libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
 
-For `Maven` (link will be updated in a day)
+For `Maven` add the below in your `pom.xml` file:
+	<dependency>
+		<groupId>com.jatinpuri</groupId>
+		<artifactId>kvstore_2.10</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+	
+	<repositories>
+		<repository>
+			<id>Sonatype OSS Snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
 
-External `Jar` can be downloaded from [repo](https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri/kvstore_2.10/1.0.0-SNAPSHOT/). Though you will manually have to download the dependencies. (Will update the part with link to all necessory links in future)
+
+External `Jar` can be downloaded from [repo](https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri/kvstore_2.10/1.0.0-SNAPSHOT/). You will manually have to download the dependencies. (Will update the part with link to all necessory links in future)
 
 
 
