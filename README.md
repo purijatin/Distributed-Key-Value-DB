@@ -1,4 +1,4 @@
-This is a micro-stable implementation of a distributed Key-Value pair database. Current implementation is based on Akka Actor's and hence can it only be used using message communication with Actors. This constraint might be removed in future.
+This is a micro but stable implementation of a distributed Key-Value pair database. Current implementation is based on Akka Actor's and hence can it only be used using message communication with Actors. This constraint might be removed in future.
 
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
