@@ -1,4 +1,4 @@
-organization := "com.purijatin"
+organization := "com.jatinpuri"
 
 name := "kvstore"
 
@@ -30,3 +30,40 @@ libraryDependencies ++= Seq(
     )
 
 
+publishMavenStyle := true
+
+publishTo <<= version { (v: String) =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+pomExtra := (
+  <url>https://github.com/purijatin/Distributed-Key-Value-DB</url>
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>git@github.com:purijatin/Distributed-Key-Value-DB.git</url>
+    <connection>scm:git:git@github.com:jsuereth/scala-arm.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>purijatin</id>
+      <name>Jatin Puri</name>
+      <url>http://purijatin@gmail.com</url>
+    </developer>
+  </developers>)
+  
+ credentials += Credentials(new java.io.File("/home/jatinpuri/.sbt/0.13/sonatype.credentials"))
+ 
