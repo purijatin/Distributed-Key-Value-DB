@@ -3,29 +3,30 @@ This is a micro but stable implementation of a distributed Key-Value pair databa
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
 Binaries
-======
+========
 
 For `sbt` add the below in your `build.sbt`:
 	
-	resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+	resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/releases"
 
-	libraryDependencies += "com.jatinpuri" %% "kvstore" % "1.0.0-SNAPSHOT"
+	libraryDependencies += "com.jatinpuri" % "kvstore_2.10" % "1.0.0"
 
 For `Maven` add the below in your `pom.xml` file:
 
 	<dependency>
 		<groupId>com.jatinpuri</groupId>
 		<artifactId>kvstore_2.10</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</dependency>
 	
 	<repositories>
 		<repository>
 			<id>Sonatype OSS Snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
 		</repository>
 	</repositories>
 
+Latest `Snapshots` can be downloaded from: [https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri](https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri)
 
 External `Jar` can be downloaded from [repo](https://oss.sonatype.org/content/repositories/snapshots/com/jatinpuri/kvstore_2.10/1.0.0-SNAPSHOT/). You will manually have to download the dependencies. (Will update the part with link to all necessory links in future)
 
