@@ -69,9 +69,27 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
   var storage: ActorRef = newStorage
 
   def receive = {
-    case JoinedPrimary => context.become(leader)
-    case JoinedSecondary => context.become(replica)
-    case other @ _ => self.tell(other, sender)
+    case any @ _ =>
+      context.become(receiver(List[(Any, ActorRef)]()))
+      self.tell(any, sender)
+  }
+
+  /**
+   * Primary Receive for the Replica. Based on the message received by Arbiter,
+   * it decides if the replica should act as Primary or Secondary one.
+   *
+   * Meanwhile if any other message is received before, it is stored and no action is taken.
+   * Only on receiving the status from [[kvstore.Arbiter]], all the messages received yet
+   * are executed.
+   */
+  def receiver(toAdd: List[(Any, ActorRef)]): Receive = {
+    case JoinedPrimary =>
+      toAdd.reverseIterator.foreach { case (x, y) => self.tell(x, y) }
+      context.become(leader)
+    case JoinedSecondary =>
+      toAdd.reverseIterator.foreach { case (x, y) => self.tell(x, y) }
+      context.become(replica)
+    case other @ _ => context.become(receiver((other, sender) :: toAdd))
   }
 
   /**
