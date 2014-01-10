@@ -10,6 +10,9 @@ import kvstore.Arbiter.{ JoinedSecondary, Join }
 import kvstore.Persistence.{ Persisted, Persist }
 import scala.util.Random
 import scala.util.control.NonFatal
+import kvstore.Replica._
+import akka.actor.ActorRef
+import kvstore.Arbiter._
 
 class Step2_SecondarySpec extends TestKit(ActorSystem("Step2SecondarySpec"))
   with FunSuite
@@ -107,4 +110,25 @@ class Step2_SecondarySpec extends TestKit(ActorSystem("Step2SecondarySpec"))
     client.get("k1") should be === Some("v2")
   }
 
+  test("case5: Secondary replica till receiving a message from Arbiter, should save and react later to messages") {
+    val arbiter = TestProbe()
+    val primary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = false)), "case5-primary")
+    val _primary = session(primary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(primary, JoinedPrimary)
+    for (i <- 1 to 100) _primary.setAcked(i, i)
+
+    val secondary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = false)), "case5-secondary")
+    val _secondary = TestProbe()
+
+    arbiter.expectMsg(Join)
+    for (i <- 1 to 100) _secondary.send(secondary, Get(i, i * 100))
+    arbiter.send(secondary, JoinedSecondary) //Join late
+
+    _secondary.receiveN(100)
+
+  }
+
+  implicit private def toStr(n: Long): String = n + ""
 }
