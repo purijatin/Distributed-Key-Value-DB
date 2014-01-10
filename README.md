@@ -1,4 +1,4 @@
-This is a micro but stable implementation of an asynchronous distributed Key-Value pair database. Current implementation is based on Akka Actor's and hence can it only be used using message communication with Actors. This constraint might be removed in future.
+This is a micro but stable implementation of an asynchronous distributed Key-Value pair database. 
 
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
@@ -35,6 +35,7 @@ External `Jar` can be downloaded from [repo](https://oss.sonatype.org/content/re
 Summary
 =======
 
+Current implementation is based on Akka Actor's and hence can it only be used using message communication with Actors. This constraint might be removed in future.
 
 The current version system includes a primary node, which is responsible for replicating all changes to a set of secondary nodes where secondary nodes might join and leave at arbitrary times. Internally all the changes are persisted locally both by primary or secondary node. (Persistence is loosely coupled and can be done using any SQL or NOSQL based database or file for that matter).
 
