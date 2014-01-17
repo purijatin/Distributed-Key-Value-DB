@@ -1,4 +1,5 @@
-This is a micro but stable implementation of an asynchronous "Key-Value" cache grid with an option for persistence. i.e. In short if you have 5 instances running, "Key-Value" pair added to one instance gets replicated automatically to other instances.
+This is a micro but stable implementation of an asynchronous "Key-Value" cache grid with an option for persistence. 
+In short if you have 5 instances running, "Key-Value" pair added to one instance gets replicated automatically to other instances.
 
 Please refer [wiki](https://github.com/purijatin/Distributed-Key-Value-DB/wiki/Overview) for more information.
 
