@@ -50,12 +50,14 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
    * Key Value pair mapping
    */
   var kv = Map.empty[String, String]
+  
   /**
    * A map from secondary replicas to replicators
    */
   var secondaries = Map.empty[ActorRef, ActorRef]
+  
   /**
-   * the current set of replicators
+   * the current set of Replicators
    */
   var replicators = Set.empty[ActorRef]
   def newStorage = context.actorOf(persistenceProps, "Storage_" + Math.abs(Random.nextInt))
@@ -110,7 +112,7 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
   val leader: Receive = {
     case Replicas(replicas) => {
       val removed = secondaries.keySet -- replicas.filter(x => x != self)
-      removed.map { x =>
+      removed.foreach { x =>
         val rep = secondaries(x)
         val inProcess = childAcks.filter(x => x._2._2 contains rep)
         inProcess.foreach { f => self.tell(Replicated("", f._1), rep) }
@@ -120,7 +122,7 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
       }
 
       var newOnes = Set[ActorRef]()
-      replicas.filter(x => x != self).map { newR =>
+      replicas.filter(x => x != self).foreach { newR =>
         secondaries.get(newR) match {
           case Some(i) => //do nothing
           case None => {
@@ -143,13 +145,13 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
     case Insert(key, value, id) =>
       persistPrimary(key, Some(value), id)
       val rep = Replicate(key, Some(value), id)
-      replicators.map(x => x ! rep)
+      replicators.foreach(x => x ! rep)
       childAcks += (id -> ((sender, replicators)))
 
     case Remove(key, id) =>
       persistPrimary(key, None, id)
       val rep = Replicate(key, None, id)
-      replicators.map(x => x ! rep)
+      replicators.foreach(x => x ! rep)
       childAcks += (id -> ((sender, replicators)))
 
     case Get(key, id) =>
@@ -250,7 +252,7 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
       case Some((ref, x)) =>
         ref ! SnapshotAck(key, seq)
         acks -= seq
-      case None => // throw new IllegalStateException("ActorRef for seq: " + seq + " not found " + acks)
+      case None => 
     }
 
     case ValidateResponse(seq, _) =>
